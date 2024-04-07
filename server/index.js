@@ -1,17 +1,31 @@
-const websocket = require('ws');
-const server = new websocket.Server({ port: '3000'});
+const express = require('express');
+const WebSocket = require('ws');
+const http = require('http');
 
+// Inicializa o servidor Express
+const app = express();
 
-server.on('connection', function connection(ws){
-    console.log('Um cliente se conectou');
+// Define a pasta de arquivos estáticos
+app.use(express.static('public'));
 
-    ws.on('message', function incoming(message) {
-        console.log('Mensagem recebida:', message.toString());
+// Cria um servidor HTTP baseado no Express app
+const server = http.createServer(app);
+
+// Inicializa o servidor WebSocket no mesmo servidor HTTP
+const wss = new WebSocket.Server({ server });
+
+wss.on('connection', (ws) => {
+    console.log('Cliente conectado via WebSocket');
+
+    ws.on('message', (message) => {
+        console.log(`Mensagem recebida: ${message}`);
     });
 
-		ws.on('close', function close() {
-        console.log('Um cliente se desconectou');
-    });
+    ws.send('Olá Cliente!');
+});
 
-    ws.send('Mensagem do servidor');
+// Inicia o servidor HTTP
+const PORT = 3000;
+server.listen(PORT, () => {
+    console.log(`Servidor executando na porta ${PORT}`);
 });

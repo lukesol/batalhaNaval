@@ -4,6 +4,7 @@ function enviaMensagem(e){
     e.preventDefault();
     const input = document.querySelector('input');
 
+
     if(input?.value){
         socket.send(input.value);
         input.value = "";
@@ -16,7 +17,5 @@ document.querySelector('form')
 // Esperar por mensagem 
 
 socket.addEventListener("message", ({ data }) => {
-    const li = document.createElement('li');
-    li.textContent = data;
-    document.querySelector('ul')?.appendChild(li);
+    console.log("Recebendo mensagem do servidor");
 });

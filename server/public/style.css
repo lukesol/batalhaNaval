@@ -1,0 +1,45 @@
+* {
+    font-size: 1.5rem;
+}
+
+body {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+}
+
+ul {
+    display: flex;
+    flex-flow: column;
+    justify-content: left;
+    padding: 22px;
+    margin: 0;
+    list-style-type: none;
+    align-items: center;
+}
+
+div.tabuleiro {
+    outline: black solid 1px;
+    width: 450px;
+    height: 450px;
+}
+
+div.global-container {
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    height: 100vh;
+    padding: 20px;
+}
+
+.coluna {
+    border: solid black 1px;
+    padding: 18px;
+    margin: 1px;
+}
