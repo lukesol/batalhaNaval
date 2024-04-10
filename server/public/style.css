@@ -5,20 +5,13 @@
 body {
     background-color: #333;
     color: #fff;
-    padding: 1rem;
-}
-
-form {
-    display: flex;
-    justify-content: center;
-    gap: 4px;
 }
 
 ul {
     display: flex;
     flex-flow: column;
     justify-content: left;
-    padding: 22px;
+    padding: 25px;
     margin: 0;
     list-style-type: none;
     align-items: center;
@@ -34,7 +27,7 @@ div.global-container {
     display: flex;
     justify-content: space-around;
     background-color: white;
-    height: 100vh;
+    height: 540px;
     padding: 20px;
 }
 
@@ -42,4 +35,10 @@ div.global-container {
     border: solid black 1px;
     padding: 18px;
     margin: 1px;
+}
+
+div#mensagem {
+    color: black;
+    align-content: center;
+    width: 200px;
 }

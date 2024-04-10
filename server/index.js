@@ -1,3 +1,4 @@
+const uuid = require('uuid');
 const express = require('express');
 const WebSocket = require('ws');
 const http = require('http');
@@ -14,14 +15,23 @@ const server = http.createServer(app);
 // Inicializa o servidor WebSocket no mesmo servidor HTTP
 const wss = new WebSocket.Server({ server });
 
+const clientes = {};
+const partidas = {};
+
 wss.on('connection', (ws) => {
-    console.log('Cliente conectado via WebSocket');
+    idCliente = uuid();
+    jogadores[idCliente] = ws;
+
+    ws.send('Esperando outro jogador');
 
     ws.on('message', (message) => {
         console.log(`Mensagem recebida: ${message}`);
     });
 
-    ws.send('Olá Cliente!');
+
+    ws.on('close', (number) => {
+        console.log('Um cliente se desconectou');
+    })
 });
 
 // Inicia o servidor HTTP
