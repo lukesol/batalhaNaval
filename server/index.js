@@ -18,11 +18,23 @@ const wss = new WebSocket.Server({ server });
 const clientes = {};
 const partidas = {};
 
+
 wss.on('connection', (ws) => {
-    idCliente = uuid();
-    jogadores[idCliente] = ws;
+    idCliente = uuid.v4();
+    clientes[idCliente] = {
+        'ws' : ws,
+    };
+
+    const payLoad = {
+        'method' : 'connection',
+        'idCliente' : idCliente
+    }
 
     ws.send('Esperando outro jogador');
+    ws.send(JSON.stringify(payLoad));
+        
+    console.log(clientes[idCliente])
+    // ws.send(JSON.stringify(clientes[idCliente]))
 
     ws.on('message', (message) => {
         console.log(`Mensagem recebida: ${message}`);

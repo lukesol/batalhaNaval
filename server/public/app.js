@@ -1,16 +1,22 @@
 const socket = new WebSocket('ws://localhost:3000');
 
-// Esperar por conexão
+let clientId = null;
 
+// Esperar por conexão
 socket.addEventListener('open', (e) => {
     console.log('cliente se conectou, dados: ', e)
 })
 
 
 socket.addEventListener("message", ({ data }) => {
-    const mensagem = document.getElementById('mensagem');
-    mensagem.innerHTML = data;
-    
+    // setTimeout(() => {
+        if(data.metodo == 'connect'){
+            clientId = data.clientId
+        }
+            console.log(data)
+        const mensagem = document.getElementById('mensagem');
+        mensagem.innerHTML = data;    
+    // }, 500);
 });
 
 
